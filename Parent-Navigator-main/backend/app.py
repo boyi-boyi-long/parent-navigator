@@ -71,8 +71,10 @@ atexit.register(lambda: scheduler.shutdown())
 
 # ── Webhook 路由 ──────────────────────────────────────────────────────────────
 
-@app.route("/webhook", methods=["POST"])
+@app.route("/webhook", methods=["GET", "POST"])
 def webhook():
+    if request.method == "GET":
+        return "OK", 200
     signature = request.headers.get("X-Line-Signature", "")
     body      = request.get_data(as_text=True)
     try:
