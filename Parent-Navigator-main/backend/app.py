@@ -12,7 +12,7 @@
 import atexit
 import logging
 
-from flask import Flask, request, abort, jsonify
+from flask import Flask, request, abort, jsonify, render_template
 from flask_cors import CORS
 
 from linebot.v3 import WebhookHandler
@@ -83,6 +83,11 @@ def webhook():
         logger.warning("LINE 簽名驗證失敗")
         abort(400)
     return "OK", 200
+
+
+@app.route("/", methods=["GET"])
+def index():
+    return render_template("index.html")
 
 
 @app.route("/health", methods=["GET"])
