@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# 環境變數（機密）
+.env
+.env.*
+!.env.example
+
+# 虛擬環境
+venv/
+env/
+.venv/
+
+# ChromaDB 向量資料庫（本地大檔，不追蹤）
+chroma_db/
+Parent-Navigator-main/backend/chroma_db/
+
+# 日誌
+*.log
+logs/
+
+# 系統檔
+.DS_Store
+Thumbs.db
+
+# 暫存 Office 檔案
+~$*
+
+# IDE
+.vscode/
+.idea/
+
+# 大型二進位檔（簡報）
+*.pptx
+*.pdf
