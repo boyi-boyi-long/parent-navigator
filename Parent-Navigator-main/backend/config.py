@@ -32,7 +32,7 @@ DB_POOL_RECYCLE = int(os.getenv("DB_POOL_RECYCLE", "3600"))  # 每小時回收�
 
 # ── OpenAI / LLM ──────────────────────────────────────────────────────────────
 OPENAI_API_KEY   = os.getenv("OPENAI_API_KEY", "")
-OPENAI_MODEL     = os.getenv("OPENAI_MODEL", "gpt-4o-mini")  # 可換 gpt-4o
+OPENAI_MODEL     = os.getenv("OPENAI_MODEL", "gpt-4.1-nano")  # 最便宜方案；可換 gpt-4.1-mini 或 gpt-4o-mini
 OPENAI_MAX_TOKENS = int(os.getenv("OPENAI_MAX_TOKENS", "1024"))
 EMBEDDING_MODEL  = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
 
