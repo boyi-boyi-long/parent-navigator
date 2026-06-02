@@ -763,9 +763,97 @@
   }
   .notice-btn:hover { background: var(--charcoal); }
 
+  /* ─── PAGE SECTIONS ─── */
+  .page-section { display: none; }
+  .page-section.active { display: block; }
+
+  /* ─── CONTENT PAGE ─── */
+  .content-page { max-width: 1280px; margin: 0 auto; padding: 40px 32px; }
+  .content-page-header { margin-bottom: 32px; }
+  .content-page-header h2 { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 700; color: var(--charcoal); margin-bottom: 8px; }
+  .content-page-header p { font-size: 14px; color: var(--charcoal-light); }
+  .article-list { display: flex; flex-direction: column; gap: 16px; }
+  .article-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .article-card:hover { border-color: var(--sage-light); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .article-card h3 { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+  .article-card p { font-size: 13px; color: var(--charcoal-light); line-height: 1.7; }
+  .article-card-meta { display: flex; gap: 10px; align-items: center; margin-top: 10px; }
+  .article-date { font-size: 11px; color: var(--charcoal-light); }
+
+  /* ─── ACCORDION (FAQ) ─── */
+  .faq-list { display: flex; flex-direction: column; gap: 10px; }
+  .faq-item { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+  .faq-question {
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--charcoal);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.15s;
+  }
+  .faq-question:hover { background: var(--warm-sand); }
+  .faq-question .faq-arrow { font-size: 12px; color: var(--charcoal-light); transition: transform 0.2s; }
+  .faq-item.open .faq-arrow { transform: rotate(180deg); }
+  .faq-answer { display: none; padding: 0 20px 16px; font-size: 13px; color: var(--charcoal-mid); line-height: 1.8; border-top: 1px solid var(--warm-sand); padding-top: 12px; }
+  .faq-item.open .faq-answer { display: block; }
+
+  /* ─── QUICK LINKS PAGE ─── */
+  .links-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .link-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: all 0.2s;
+  }
+  .link-card:hover { border-color: var(--sage-light); box-shadow: var(--shadow-md); transform: translateY(-2px); }
+  .link-card-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .link-card-icon.green { background: var(--sage-pale); color: var(--sage); }
+  .link-card-icon.gold { background: var(--gold-pale); color: #9a7a30; }
+  .link-card-icon.blue { background: #EBF3FA; color: #4a7aa8; }
+  .link-card-icon.rose { background: var(--dusty-rose-pale); color: #b07068; }
+  .link-card-icon svg { width: 22px; height: 22px; stroke-width: 2; }
+  .link-card-text h4 { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 2px; }
+  .link-card-text p { font-size: 12px; color: var(--charcoal-light); }
+
+  /* ─── LINE HEADER BUTTON ─── */
+  .btn-line {
+    padding: 8px 14px;
+    background: #06C755;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .btn-line:hover { background: #05a847; }
+  .btn-line svg { width: 15px; height: 15px; fill: #fff; }
+
   @media (max-width: 920px) {
     .main-wrap { grid-template-columns: 1fr; }
     .sidebar { position: static; }
+    .links-grid { grid-template-columns: 1fr; }
   }
 
   @media (max-width: 640px) {
@@ -819,15 +907,19 @@
     </a>
     <nav>
       <ul>
-        <li><a href="#" class="active">最新消息</a></li>
-        <li><a href="#">醫療資訊</a></li>
-        <li><a href="#">補助資訊</a></li>
-        <li><a href="#">教育資源</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">關於平台</a></li>
+        <li><a href="#" class="active" data-page="home">最新消息</a></li>
+        <li><a href="#" data-page="medical">醫療資訊</a></li>
+        <li><a href="#" data-page="subsidy">補助資訊</a></li>
+        <li><a href="#" data-page="education">教育資源</a></li>
+        <li><a href="#" data-page="faq">FAQ</a></li>
+        <li><a href="#" data-page="about">關於平台</a></li>
       </ul>
     </nav>
     <div class="header-actions">
+      <a href="https://line.me/R/ti/p/@YOUR_LINE_ID" target="_blank" class="btn-line">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.03 2 11c0 3.08 1.63 5.8 4.13 7.46L5.5 22l4.04-2.08C10.29 20.28 11.13 20.4 12 20.4c5.52 0 10-4.03 10-9S17.52 2 12 2z"/></svg>
+        LINE 加入
+      </a>
       <button class="btn-outline">線上客服</button>
       <button class="btn-solid">會員登入</button>
     </div>
@@ -843,6 +935,7 @@
   </span>
 </div>
 
+<section id="page-home" class="page-section active">
 <!-- HERO SEARCH -->
 <div class="hero">
   <div class="hero-content animate-in">
@@ -923,42 +1016,42 @@
       <div class="section-title">育兒相關資料</div>
       <div class="section-divider"></div>
       <div class="category-grid">
-        <a href="#" class="category-card" data-query="新生兒照護">
+        <a href="#" class="category-card" data-page="medical">
           <div class="icon-wrap green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6"></path><path d="M10 2v4l-3 3v8a5 5 0 0 0 10 0V9l-3-3V2"></path><path d="M8 13h8"></path></svg></div>
           <div class="label">新生兒照護</div>
           <div class="count">42 筆資料</div>
         </a>
-        <a href="#" class="category-card" data-query="兒童醫療資源">
+        <a href="#" class="category-card" data-page="medical">
           <div class="icon-wrap rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 20.5 3.5 13.5a4.24 4.24 0 0 1 6-6l7 7a4.24 4.24 0 0 1-6 6Z"></path><path d="m8 12 4 4"></path><path d="M14 4h5v5"></path><path d="M19 4 13 10"></path></svg></div>
           <div class="label">兒童醫療資源</div>
           <div class="count">87 筆資料</div>
         </a>
-        <a href="#" class="category-card" data-query="育兒補助申請">
+        <a href="#" class="category-card" data-page="subsidy">
           <div class="icon-wrap gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="3"></rect><circle cx="12" cy="12" r="3"></circle><path d="M6 9v.01"></path><path d="M18 15v.01"></path></svg></div>
           <div class="label">育兒補助申請</div>
           <div class="count">63 筆資料</div>
         </a>
-        <a href="#" class="category-card" data-query="托嬰中心查詢">
+        <a href="#" class="category-card" data-page="education">
           <div class="icon-wrap blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V8l7-4 7 4v13"></path><path d="M9 21v-6h6v6"></path><path d="M9 10h.01"></path><path d="M15 10h.01"></path></svg></div>
           <div class="label">托嬰中心查詢</div>
           <div class="count">118 筆資料</div>
         </a>
-        <a href="#" class="category-card" data-query="幼兒教育資源">
+        <a href="#" class="category-card" data-page="education">
           <div class="icon-wrap lavender"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13A2.5 2.5 0 0 1 6.5 3Z"></path><path d="M8 7h8"></path><path d="M8 11h6"></path></svg></div>
           <div class="label">幼兒教育資源</div>
           <div class="count">55 筆資料</div>
         </a>
-        <a href="#" class="category-card" data-query="育嬰假與留職停薪">
+        <a href="#" class="category-card" data-page="subsidy">
           <div class="icon-wrap peach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="7" r="3"></circle><path d="M6 21v-3a6 6 0 0 1 12 0v3"></path><path d="M9 14a4 4 0 0 0 6 0"></path></svg></div>
           <div class="label">育嬰假與留職</div>
           <div class="count">29 筆資料</div>
         </a>
-        <a href="#" class="category-card" data-query="身心障礙兒童補助">
+        <a href="#" class="category-card" data-page="subsidy">
           <div class="icon-wrap mint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-11a7 7 0 0 1 14 0c0 6.6-7 11-7 11Z"></path><path d="M12 7v6"></path><path d="M9 10h6"></path></svg></div>
           <div class="label">身心障礙兒童</div>
           <div class="count">34 筆資料</div>
         </a>
-        <a href="#" class="category-card" data-query="親子活動場館">
+        <a href="#" class="category-card" data-page="education">
           <div class="icon-wrap sky"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 4l9 7"></path><path d="M5 10v10h14V10"></path><path d="M9 20v-6h6v6"></path></svg></div>
           <div class="label">親子活動場館</div>
           <div class="count">76 筆資料</div>
@@ -971,7 +1064,7 @@
       <div class="news-panel">
         <div class="news-panel-header">
           <div class="news-panel-title">每日異動資訊 <span class="panel-badge">TODAY</span></div>
-          <a href="#" class="panel-more">下載每日異動資料 →</a>
+          <a href="#" class="panel-more" data-page="news-daily">查看全部 →</a>
         </div>
         <div class="news-list">
           <div class="news-item"><div class="news-num top">1</div><div class="news-content"><div class="news-title-text">衛福部公告114年度第二季育兒補助撥款時程</div><div class="news-meta"><span class="news-date">2025-05-19</span><span class="news-tag tag-green">補助資訊</span></div></div></div>
@@ -984,7 +1077,7 @@
       <div class="news-panel">
         <div class="news-panel-header">
           <div class="news-panel-title">熱門資訊 <span class="panel-badge">HOT</span></div>
-          <a href="#" class="panel-more">查看全部 →</a>
+          <a href="#" class="panel-more" data-page="news-hot">查看全部 →</a>
         </div>
         <div class="news-list">
           <div class="news-item"><div class="news-num top">1</div><div class="news-content"><div class="news-title-text">育兒津貼 vs 托育補助：哪一個更適合你的家庭？</div><div class="news-meta"><span class="news-date">高熱度</span><span class="news-tag tag-gold">補助資訊</span></div></div></div>
@@ -998,7 +1091,7 @@
 
   </div>
 
-  <!-- SIDEBAR -->
+  <!-- SIDEBAR (always visible via fixed chatbot) -->
   <aside class="sidebar">
     <div class="chatbot-widget" id="chatbot">
       <div class="chatbot-header" onclick="toggleChatbot()" title="開啟客服">
@@ -1050,6 +1143,166 @@
     </div>
   </aside>
 </div>
+</section><!-- /page-home -->
+
+<!-- ═══ CONTENT PAGES ═══════════════════════════════════════════════════════ -->
+
+<!-- MEDICAL PAGE -->
+<section id="page-medical" class="page-section">
+  <div class="content-page">
+    <div class="content-page-header">
+      <h2>醫療資訊</h2>
+      <p>兒童健康、預防保健、醫療資源整合</p>
+    </div>
+    <div class="article-list">
+      <div class="article-card"><h3>0-6歲兒童預防保健服務完整指南</h3><p>衛生福利部提供 0-6 歲兒童七次免費預防保健服務，涵蓋生長發育評估、聽力、視力及牙齒健康檢查。家長需於寶寶滿月、3 個月、6 個月、9 個月、18 個月、2 歲及 3 歲時，攜帶健保卡至合約院所完成。</p><div class="article-card-meta"><span class="article-date">2026-05-20</span><span class="news-tag tag-rose">醫療健檢</span></div></div>
+      <div class="article-card"><h3>公費疫苗接種時程：從出生到入學完整版</h3><p>台灣公費疫苗涵蓋 B 型肝炎、白喉破傷風百日咳、小兒麻痺、麻疹腮腺炎德國麻疹、水痘、日本腦炎等 10 餘種，全部免費施打。請依出生月份對照疾管署公告時程，並保留黃色預防接種紀錄卡。</p><div class="article-card-meta"><span class="article-date">2026-05-15</span><span class="news-tag tag-rose">疫苗接種</span></div></div>
+      <div class="article-card"><h3>腸病毒防治：家長必知的症狀與處理</h3><p>腸病毒好發於 5 歲以下幼童，每年 4-9 月為高峰期。常見症狀為手足口病或疱疹性咽峽炎，大多數可自癒，但若出現持續高燒、嗜睡、肌肉抽搐等重症前兆需立即送醫。</p><div class="article-card-meta"><span class="article-date">2026-05-10</span><span class="news-tag tag-rose">傳染病防治</span></div></div>
+      <div class="article-card"><h3>兒童牙齒保健：塗氟補助與正確刷牙方式</h3><p>健保提供 6 個月至 5 歲兒童每半年一次免費塗氟服務，可在牙科診所申請。建議從第一顆牙萌發後即開始清潔，使用軟毛嬰兒牙刷，並在 1 歲前戒除奶瓶入睡習慣。</p><div class="article-card-meta"><span class="article-date">2026-04-28</span><span class="news-tag tag-rose">口腔健康</span></div></div>
+      <div class="article-card"><h3>發展遲緩早期療育：如何申請評估與資源</h3><p>若懷疑孩子有發展遲緩，可至各縣市發展遲緩兒童早期療育通報轉介中心申請評估，完全免費。早療資源包含物理治療、語言治療、職能治療等，把握黃金治療期。</p><div class="article-card-meta"><span class="article-date">2026-04-20</span><span class="news-tag tag-rose">早期療育</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSIDY PAGE -->
+<section id="page-subsidy" class="page-section">
+  <div class="content-page">
+    <div class="content-page-header">
+      <h2>補助資訊</h2>
+      <p>政府育兒補助、生育獎勵、托育補助完整整理</p>
+    </div>
+    <div class="article-list">
+      <div class="article-card"><h3>育兒津貼申請指南（未滿 5 歲適用）</h3><p>未使用公托、公幼的家庭，子女未滿 5 歲可申請育兒津貼，每月最高 5,000 元（第三胎以上 7,000 元）。須由父母其中一方在家照顧，或送往私托、家托。每年向戶籍所在地公所申請，資格每年審查一次。</p><div class="article-card-meta"><span class="article-date">2026-05-19</span><span class="news-tag tag-gold">補助申請</span></div></div>
+      <div class="article-card"><h3>托育補助：準公共化與私托家托的差異</h3><p>送至簽約準公共化托嬰中心，每月補助 6,000-7,000 元；家庭托育（居家托育人員）每月補助 6,000 元。低收入戶、中低收入戶另有加碼。申請方式至各縣市社會局線上平台辦理，無需紙本。</p><div class="article-card-meta"><span class="article-date">2026-05-15</span><span class="news-tag tag-gold">托育補助</span></div></div>
+      <div class="article-card"><h3>生育獎勵金：各縣市金額比較與申請期限</h3><p>除中央補助外，各縣市另有生育獎勵金。台北市第一胎 2 萬元、第二胎 3 萬元、第三胎起 6 萬元；新北市第三胎起 6 萬元。申請期限通常為出生後 6 個月內，請勿錯過。</p><div class="article-card-meta"><span class="article-date">2026-05-10</span><span class="news-tag tag-gold">生育獎勵</span></div></div>
+      <div class="article-card"><h3>育嬰留職停薪津貼：爸媽都可以請</h3><p>子女未滿 3 歲，父母均可申請育嬰留停，每次最長 6 個月，可分次使用。勞保被保險人可申請育嬰留停津貼，月投保薪資 60%，每月最高約 24,000 元。向勞保局線上申辦，7 個工作天核定。</p><div class="article-card-meta"><span class="article-date">2026-05-08</span><span class="news-tag tag-gold">育嬰津貼</span></div></div>
+      <div class="article-card"><h3>身心障礙兒童特殊補助整理</h3><p>領有身心障礙手冊的兒童，可申請發展遲緩兒童早療補助（每月最高 4,000 元）、特殊教育資源班服務、輔具補助等。各縣市另有加碼，詳洽各縣市社會局身障福利科。</p><div class="article-card-meta"><span class="article-date">2026-04-25</span><span class="news-tag tag-gold">身障補助</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION PAGE -->
+<section id="page-education" class="page-section">
+  <div class="content-page">
+    <div class="content-page-header">
+      <h2>教育資源</h2>
+      <p>托嬰、幼兒園、早療、親子活動資源整合</p>
+    </div>
+    <div class="article-list">
+      <div class="article-card"><h3>公立幼兒園申請攻略：抽籤時間與流程</h3><p>公立幼兒園招生每年 3-4 月辦理，額滿採抽籤。招生對象為 2-6 歲幼兒，學費每月約 2,000-3,500 元，遠低於私立幼兒園。各縣市招生資訊於縣市教育局網站公告，建議關注學區學校官網。</p><div class="article-card-meta"><span class="article-date">2026-05-18</span><span class="news-tag tag-blue">幼兒教育</span></div></div>
+      <div class="article-card"><h3>準公共幼兒園：享受私立品質、近公立收費</h3><p>簽署準公共化契約的私立幼兒園，收費上限每月 3,000 元（一般家庭）。政府補助差額給園所，家長直接受益。台北市、新北市已有數百家，可至各縣市教育局網站查詢名單。</p><div class="article-card-meta"><span class="article-date">2026-05-12</span><span class="news-tag tag-blue">幼兒教育</span></div></div>
+      <div class="article-card"><h3>如何挑選合格托嬰中心：評鑑標準解析</h3><p>合格托嬰中心須通過縣市政府評鑑，分為優良、合格兩等級。挑選時注意：是否為準公共化合約中心（可領補助）、收托比（1:5 以下較佳）、保育人員資格、環境衛生與安全。</p><div class="article-card-meta"><span class="article-date">2026-05-05</span><span class="news-tag tag-blue">托嬰選擇</span></div></div>
+      <div class="article-card"><h3>居家托育（保母）資源與如何媒合</h3><p>居家托育人員（俗稱保母）須完成 100 小時訓練並向縣市登記。可透過各縣市居家托育服務中心媒合，費用每月約 15,000-22,000 元，可申請每月 6,000 元補助。選擇有登記的保母較有保障。</p><div class="article-card-meta"><span class="article-date">2026-04-30</span><span class="news-tag tag-blue">居家托育</span></div></div>
+      <div class="article-card"><h3>親子館與育兒資源中心：免費親子活動</h3><p>各縣市設有親子館（台北市 27 家）及育兒資源中心，提供免費親子活動、玩具借用、育兒諮詢等服務。0-6 歲幼兒可免費入場，部分活動需事先網路報名，名額有限。</p><div class="article-card-meta"><span class="article-date">2026-04-22</span><span class="news-tag tag-blue">親子活動</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ PAGE -->
+<section id="page-faq" class="page-section">
+  <div class="content-page">
+    <div class="content-page-header">
+      <h2>常見問題 FAQ</h2>
+      <p>新手爸媽最常詢問的問題解答</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">育兒津貼和托育補助可以同時領嗎？<span class="faq-arrow">▼</span></div><div class="faq-answer">不行，兩者擇一申請。若將孩子送往準公共化托嬰中心或家托，申請托育補助；若自行在家照顧或送往一般私托，則申請育兒津貼。建議先計算哪種方式總支出較低。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">出生後要辦哪些手續？期限是什麼？<span class="faq-arrow">▼</span></div><div class="faq-answer">出生後 10 日內需完成出生登記（戶政事務所或線上辦理）。出生後 60 日內申請全民健保加保。生育獎勵金依各縣市規定，多數為出生後 6 個月內申請。育兒津貼則無時間限制，符合資格即可申請。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">育嬰留職停薪，爸爸也可以申請嗎？<span class="faq-arrow">▼</span></div><div class="faq-answer">可以！爸爸和媽媽都有權申請，且可以輪流申請，每次最長 6 個月，合計最長 1 年。勞保被保險人可同時申請育嬰留停津貼，月薪 60%（上限約 24,000 元）。向雇主申請留停，再向勞保局申請津貼。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">公托抽不到怎麼辦？有什麼替代方案？<span class="faq-arrow">▼</span></div><div class="faq-answer">可考慮準公共化托嬰中心（政府補助後每月約 3,000 元）、準公共幼兒園、居家托育（保母搭配補助）。若孩子較大（2 歲以上），也可考慮準公共幼兒園，費用與公幼相近。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">懷孕期間有什麼補助或假期？<span class="faq-arrow">▼</span></div><div class="faq-answer">懷孕後可享有：產假 8 週（順產）/ 10 週（剖腹）、陪產假 7 天（配偶）、安胎假（依醫囑）。勞保被保險人可申請生育給付（2 個月投保薪資）。各縣市另有孕婦補助或健康食品補助，詳洽戶籍所在地衛生局。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">寶寶的預防接種可以延後嗎？<span class="faq-arrow">▼</span></div><div class="faq-answer">原則上應依時程接種，但若寶寶發燒或身體不適可短暫延後。延後接種不會影響整體保護效果，但要盡快補接。若有疑慮請先詢問兒科醫師。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">如何申請身心障礙手冊（兒童）？<span class="faq-arrow">▼</span></div><div class="faq-answer">攜帶身分證明文件及醫院鑑定報告，至戶籍所在地縣市政府社會局申辦。鑑定需由指定醫院的醫師評估，等待時間約 1-3 個月。取得手冊後可申請各項障礙補助。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">托嬰中心收費沒有上限嗎？<span class="faq-arrow">▼</span></div><div class="faq-answer">一般私立托嬰中心無收費上限。但簽署準公共化契約的托嬰中心，政府有規定收費上限（約每月 20,000-26,000 元），且家長可申請補助，實際自付約 12,000-20,000 元。建議優先選擇準公共中心。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">孩子看診需要健保嗎？如何加保？<span class="faq-arrow">▼</span></div><div class="faq-answer">出生後 60 日內需辦理健保加保，可依附父母的健保投保單位辦理。辦理方式：若父母為受雇勞工，聯繫公司人資辦理；若父母為地區人口投保，至戶籍所在地鄉鎮市區公所辦理。</div></div>
+      <div class="faq-item"><div class="faq-question" onclick="toggleFaq(this)">育兒補助要繳所得稅嗎？<span class="faq-arrow">▼</span></div><div class="faq-answer">育兒津貼、托育補助、生育獎勵金等政府育兒補助均免納入綜合所得稅申報。育嬰留停津貼也不計入所得。但部分地方政府的現金補助可能有差異，建議查詢國稅局或諮詢稅務人員。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT PAGE -->
+<section id="page-about" class="page-section">
+  <div class="content-page">
+    <div class="content-page-header">
+      <h2>關於平台</h2>
+      <p>育兒導航全攻略的使命與資料來源</p>
+    </div>
+    <div class="article-list">
+      <div class="article-card"><h3>平台使命</h3><p>育兒導航全攻略致力於整合台灣各政府部門的育兒相關資訊，包含衛生福利部、教育部、勞動部、各縣市政府社會局等單位的補助政策、醫療資源與教育資源。我們希望讓每一位新手爸媽都能快速找到所需資訊，不再因資訊分散而錯失補助或錯過申請期限。</p></div>
+      <div class="article-card"><h3>AI 育兒小幫手</h3><p>平台內建的「育兒小幫手 AI」採用 RAG（檢索增強生成）技術，結合政府官方知識庫與 GPT-4 語言模型，能根據您的戶籍縣市、孩子年齡與身分別，提供精準的補助查詢與申辦指引。同時整合 LINE Bot，隨時隨地都能提問。</p></div>
+      <div class="article-card"><h3>資料來源</h3><p>本平台資料來源包含：衛生福利部、勞動部勞工保險局、教育部、各縣市政府社會局與教育局、疾病管制署等官方網站。資料由系統自動爬取並每週更新，力求即時準確。如發現資訊有誤，歡迎透過客服反映。</p></div>
+      <div class="article-card"><h3>免責聲明</h3><p>本平台資訊僅供參考，實際補助金額、申請資格與期限以各主管機關最新公告為準。申請補助前請務必確認最新規定，或洽詢各縣市政府相關單位。本平台不對因資訊落差造成的損失負責。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS-DAILY PAGE -->
+<section id="page-news-daily" class="page-section">
+  <div class="content-page">
+    <div class="content-page-header">
+      <h2>每日異動資訊</h2>
+      <p>最新政府公告與育兒資訊更新</p>
+    </div>
+    <div class="news-panel" style="max-width:100%;">
+      <div class="news-list">
+        <div class="news-item"><div class="news-num top">1</div><div class="news-content"><div class="news-title-text">衛福部公告114年度第二季育兒補助撥款時程</div><div class="news-meta"><span class="news-date">2026-05-19</span><span class="news-tag tag-green">補助資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num top">2</div><div class="news-content"><div class="news-title-text">新北市家庭教育中心開放報名親子教養課程</div><div class="news-meta"><span class="news-date">2026-05-19</span><span class="news-tag tag-blue">教育資源</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">3</div><div class="news-content"><div class="news-title-text">疾管署提醒腸病毒疫情進入高峰期注意事項</div><div class="news-meta"><span class="news-date">2026-05-18</span><span class="news-tag tag-rose">醫療資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">4</div><div class="news-content"><div class="news-title-text">勞動部育嬰留職停薪給付申辦流程更新公告</div><div class="news-meta"><span class="news-date">2026-05-18</span><span class="news-tag tag-gold">補助資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">5</div><div class="news-content"><div class="news-title-text">各縣市公立幼兒園113學年度招生名單公告</div><div class="news-meta"><span class="news-date">2026-05-17</span><span class="news-tag tag-blue">教育資源</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">6</div><div class="news-content"><div class="news-title-text">台北市托嬰中心評鑑結果公告（114年度）</div><div class="news-meta"><span class="news-date">2026-05-16</span><span class="news-tag tag-blue">托嬰資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">7</div><div class="news-content"><div class="news-title-text">高雄市育兒津貼新增線上申辦管道說明</div><div class="news-meta"><span class="news-date">2026-05-15</span><span class="news-tag tag-green">補助資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">8</div><div class="news-content"><div class="news-title-text">疾管署更新 114 年公費流感疫苗接種對象</div><div class="news-meta"><span class="news-date">2026-05-14</span><span class="news-tag tag-rose">疫苗資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">9</div><div class="news-content"><div class="news-title-text">桃園市生育獎勵金申請系統維護公告</div><div class="news-meta"><span class="news-date">2026-05-13</span><span class="news-tag tag-gold">補助資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">10</div><div class="news-content"><div class="news-title-text">教育部補助私立幼兒園就讀費用新制說明</div><div class="news-meta"><span class="news-date">2026-05-12</span><span class="news-tag tag-blue">教育資源</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS-HOT PAGE -->
+<section id="page-news-hot" class="page-section">
+  <div class="content-page">
+    <div class="content-page-header">
+      <h2>熱門資訊</h2>
+      <p>最多人查詢的育兒資訊排行</p>
+    </div>
+    <div class="news-panel" style="max-width:100%;">
+      <div class="news-list">
+        <div class="news-item"><div class="news-num top">1</div><div class="news-content"><div class="news-title-text">育兒津貼 vs 托育補助：哪一個更適合你的家庭？</div><div class="news-meta"><span class="news-date">高熱度</span><span class="news-tag tag-gold">補助資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num top">2</div><div class="news-content"><div class="news-title-text">0-6歲兒童預防保健服務時程完整整理</div><div class="news-meta"><span class="news-date">高熱度</span><span class="news-tag tag-rose">醫療資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">3</div><div class="news-content"><div class="news-title-text">生育獎勵金申請步驟完整教學（各縣市版）</div><div class="news-meta"><span class="news-date">中熱度</span><span class="news-tag tag-green">補助資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">4</div><div class="news-content"><div class="news-title-text">如何幫寶寶挑選合格托嬰中心？評鑑指標大公開</div><div class="news-meta"><span class="news-date">中熱度</span><span class="news-tag tag-blue">教育資源</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">5</div><div class="news-content"><div class="news-title-text">爸爸也可以申請！陪產及育嬰假完整懶人包</div><div class="news-meta"><span class="news-date">中熱度</span><span class="news-tag tag-gold">補助資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">6</div><div class="news-content"><div class="news-title-text">準公共幼兒園收費不到 3000 元，怎麼申請？</div><div class="news-meta"><span class="news-date">中熱度</span><span class="news-tag tag-blue">教育資源</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">7</div><div class="news-content"><div class="news-title-text">新生兒出生登記：線上辦理完整步驟</div><div class="news-meta"><span class="news-date">低熱度</span><span class="news-tag tag-green">行政辦理</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">8</div><div class="news-content"><div class="news-title-text">孩子發展遲緩怎麼辦？早療申請流程全解析</div><div class="news-meta"><span class="news-date">低熱度</span><span class="news-tag tag-rose">早期療育</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">9</div><div class="news-content"><div class="news-title-text">公費疫苗 vs 自費疫苗：哪些值得加打？</div><div class="news-meta"><span class="news-date">低熱度</span><span class="news-tag tag-rose">疫苗資訊</span></div></div></div>
+        <div class="news-item"><div class="news-num normal">10</div><div class="news-content"><div class="news-title-text">育兒補助地圖：22 縣市補助金額一次比較</div><div class="news-meta"><span class="news-date">低熱度</span><span class="news-tag tag-gold">補助資訊</span></div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK-LINKS PAGE -->
+<section id="page-quick-links" class="page-section">
+  <div class="content-page">
+    <div class="content-page-header">
+      <h2>常用連結</h2>
+      <p>政府官方育兒資源一覽</p>
+    </div>
+    <div class="links-grid">
+      <a href="https://www.sfaa.gov.tw" target="_blank" class="link-card"><div class="link-card-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="12" rx="3"></rect><circle cx="12" cy="12" r="3"></circle></svg></div><div class="link-card-text"><h4>衛福部社家署</h4><p>育兒補助、托育政策官方網站</p></div></a>
+      <a href="https://www.nhi.gov.tw" target="_blank" class="link-card"><div class="link-card-icon rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-11a7 7 0 0 1 14 0c0 6.6-7 11-7 11Z"></path></svg></div><div class="link-card-text"><h4>全民健康保險署</h4><p>健保加保、兒童健檢查詢</p></div></a>
+      <a href="https://www.cdc.gov.tw" target="_blank" class="link-card"><div class="link-card-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2h6"></path><path d="M10 2v4l-3 3v8a5 5 0 0 0 10 0V9l-3-3V2"></path></svg></div><div class="link-card-text"><h4>疾病管制署</h4><p>公費疫苗時程、傳染病防治</p></div></a>
+      <a href="https://www.bli.gov.tw" target="_blank" class="link-card"><div class="link-card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></div><div class="link-card-text"><h4>勞工保險局</h4><p>育嬰留停津貼、生育給付申辦</p></div></a>
+      <a href="https://www.ece.moe.edu.tw" target="_blank" class="link-card"><div class="link-card-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 3H20v18H6.5A2.5 2.5 0 0 1 4 18.5v-13Z"></path></svg></div><div class="link-card-text"><h4>教育部幼兒教育資訊網</h4><p>公私立幼兒園查詢、準公共化</p></div></a>
+      <a href="https://ecare.sfaa.gov.tw" target="_blank" class="link-card"><div class="link-card-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"></path><path d="M5 21V8l7-4 7 4v13"></path></svg></div><div class="link-card-text"><h4>社福機構查詢系統</h4><p>托嬰中心、早療機構評鑑查詢</p></div></a>
+      <a href="https://www.ris.gov.tw" target="_blank" class="link-card"><div class="link-card-icon gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg></div><div class="link-card-text"><h4>內政部戶政司</h4><p>出生登記、戶口申辦線上服務</p></div></a>
+      <a href="https://1925.gov.tw" target="_blank" class="link-card"><div class="link-card-icon rose"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.99 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></div><div class="link-card-text"><h4>1925 衛福部諮詢專線</h4><p>育兒、社會福利電話諮詢</p></div></a>
+    </div>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -1185,6 +1438,44 @@
     }
   }
 
+  // ── 頁面路由 ───────────────────────────────────────────────────────────────
+  function showPage(pageId) {
+    document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+    const target = document.getElementById('page-' + pageId);
+    if (target) target.classList.add('active');
+    document.querySelectorAll('nav a[data-page]').forEach(a => {
+      a.classList.toggle('active', a.dataset.page === pageId);
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // 導覽列連結
+  document.querySelectorAll('nav a[data-page]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      showPage(a.dataset.page);
+    });
+  });
+
+  // Logo 回首頁
+  document.querySelector('.logo').addEventListener('click', e => {
+    e.preventDefault();
+    showPage('home');
+  });
+
+  // panel-more 連結（每日異動、熱門資訊）
+  document.querySelectorAll('.panel-more[data-page]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      showPage(a.dataset.page);
+    });
+  });
+
+  // FAQ accordion
+  function toggleFaq(el) {
+    el.parentElement.classList.toggle('open');
+  }
+
   // ── Chatbot toggle ─────────────────────────────────────────────────────────
   function toggleChatbot() {
     const widget = document.getElementById('chatbot');
@@ -1238,16 +1529,12 @@
     });
   });
 
-  // 分類卡片
+  // 分類卡片 → 導向對應內容頁（不觸發 Chatbot）
   document.querySelectorAll('.category-card').forEach(card => {
     card.addEventListener('click', e => {
       e.preventDefault();
-      const q = card.dataset.query;
-      if (q) {
-        const widget = document.getElementById('chatbot');
-        widget.classList.remove('chatbot-collapsed');
-        sendMessage(q);
-      }
+      const page = card.dataset.page;
+      if (page) showPage(page);
     });
   });
 
