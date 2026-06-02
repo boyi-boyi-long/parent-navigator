@@ -8,7 +8,7 @@
 ## 2. LINE CTA 按鈕
 
 - [x] 2.1 在 header 右上角加入 LINE 官方帳號按鈕（綠色 #06C755，`target="_blank"`）
-- [ ] 2.2 填入實際 LINE Bot 加入連結（目前為 `@YOUR_LINE_ID` 佔位符，需替換）
+- [x] 2.2 填入實際 LINE Bot 加入連結（@303xbemb，已更新至 topbar）
 
 ## 3. 各內容頁面建立
 
@@ -33,6 +33,6 @@
 
 ## 6. 部署
 
-- [ ] 6.1 git add + commit
-- [ ] 6.2 merge develop → main + push（Render 自動部署）
-- [ ] 6.3 開啟 `https://parent-navigator.onrender.com` 確認各頁面切換正常
+- [x] 6.1 git add + commit
+- [x] 6.2 merge develop → main + push（Render 自動部署）
+- [x] 6.3 開啟 `https://parent-navigator.onrender.com` 確認各頁面切換正常
