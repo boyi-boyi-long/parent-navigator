@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(openspec status *)",
+      "Bash(openspec instructions *)",
+      "Bash(openspec status)",
+      "PowerShell(openspec status *)",
+      "PowerShell(openspec instructions *)",
+      "PowerShell(Get-Content *)",
+      "PowerShell(Get-ChildItem *)",
+      "PowerShell(Select-String *)"
+    ]
+  }
+}
